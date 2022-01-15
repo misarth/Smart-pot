@@ -1,0 +1,81 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+{{ super() }}
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock %}
+
+
+{% block title %}
+Smart Pot
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      
+      <h1 style="font-family: 'Caveat', cursive; font-size: 30px; font-weight: bold;">Smart Pot</h1>
+
+      <p class="lead">This application helps you to detect the name of your plant and gives you an idea about its planning during a week</p>
+      <center>
+      <img src="static/plant.jpg" alt="Italian Trulli" style="width:600px;height:250px;">
+      </center>
+      
+      <form method="post" enctype="multipart/form-data">
+        <input type="file" name="file1">
+        <input type="submit">
+      </form>
+
+      {{ wtf.quick_form(form) }}
+      <img src="{{image}}" alt="">
+      <p class="space-above"><strong>{{ nm }}</strong></p>
+      <p class="space-above"><strong>{{ message }}</strong></p>
+          <table  BORDER="2"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
+  <tr>
+    <th style="background-color: grey">feature</th>
+    <th style="background-color: grey">description</th>
+  </tr>
+  <tr>
+    <td>water needs</td>
+    <td class="space-above">{{ water_needs }}</td>
+  </tr>
+  <tr>
+    <td>Climate Zones</td>
+    <td >{{ Climate_Zones }}</td>
+  </tr>
+  <tr>
+    <td>Light Needs </td>
+    <td >{{ Light_Needs }}</td>
+  </tr>
+  <tr>
+    <td>Soil Additional </td>
+    <td >{{ Soil_Type }}</td>
+  </tr>
+  <tr>
+    <td>Maintenance </td>
+    <td >{{ Maintenance }}</td>
+  </tr>
+</table>
+    </div>
+  </div>
+</div>
+
+<!--
+TIPS about using Flask-Bootstrap:
+Flask-Bootstrap keeps the default Bootstrap stylesheet in the
+env/lib/python3.5/site-packages/flask_bootstrap/static/css/ directory.
+You can replace the CSS file. HOWEVER, when you reinstall requirements
+for your project, you would overwrite all the Bootstrap files
+with the defaults.
+Flask-Bootstrap templates are in
+env/lib/python3.5/site-packages/flask_bootstrap/static/templates
+Modifying the Bootstrap base.html template: use directives and
+Jinja2's super() function. See Jinja2 documentation and also this:
+https://pythonhosted.org/Flask-Bootstrap/basic-usage.html
+-->
+
+{% endblock %}
